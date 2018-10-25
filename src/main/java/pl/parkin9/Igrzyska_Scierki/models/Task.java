@@ -8,38 +8,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author parkin9
  *
  */
-
 @Entity
-@Table(name = "accounts")
-public class Account {
+@Table(name = "tasks")
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
+    @Column(name="task_id")
     private Long id;
-    
-    @NotBlank(message = "*Pole obowiązkowe.")
-    @Column(name = "account_name", unique = true)
-    private String name;
-    
-    @NotBlank(message = "*Pole obowiązkowe.")
-    @Size(min = 6, message = "*Minimum 6 znaków.")
-    @Column(name = "password")
-    private String password;
-    
-    @Transient
-    private String passwordConfirm;
 
-///////////////////////////////////////////////////////////////////////////////
+    @NotBlank       //TODO add valid's message
+    @Column(name = "name")
+    private String name;
+
+    @NotNull        //TODO add valid's message
+    @Min(value = 1)
+    @Column(name = "points_value")
+    private Integer pointsValue;
+
+    @ManyToOne
+    private Account account;
+
+////////////////////////////////////////////////////////////
     
     public Long getId() {
         return id;
@@ -57,36 +57,35 @@ public class Account {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getPointsValue() {
+        return pointsValue;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPointsValue(Integer pointsValue) {
+        this.pointsValue = pointsValue;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", name=" + name + ", password=" + password + ", passwordConfirm="
-                + passwordConfirm + "]";
+        return "Task [id=" + id + ", name=" + name + ", pointsValue=" + pointsValue + ", account=" + account + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((account == null) ? 0 : account.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((password == null) ? 0 : password.hashCode());
-        result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
+        result = prime * result + ((pointsValue == null) ? 0 : pointsValue.hashCode());
         return result;
     }
 
@@ -101,7 +100,14 @@ public class Account {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Account other = (Account) obj;
+        Task other = (Task) obj;
+        if (account == null) {
+            if (other.account != null) {
+                return false;
+            }
+        } else if (!account.equals(other.account)) {
+            return false;
+        }
         if (id == null) {
             if (other.id != null) {
                 return false;
@@ -116,21 +122,13 @@ public class Account {
         } else if (!name.equals(other.name)) {
             return false;
         }
-        if (password == null) {
-            if (other.password != null) {
+        if (pointsValue == null) {
+            if (other.pointsValue != null) {
                 return false;
             }
-        } else if (!password.equals(other.password)) {
-            return false;
-        }
-        if (passwordConfirm == null) {
-            if (other.passwordConfirm != null) {
-                return false;
-            }
-        } else if (!passwordConfirm.equals(other.passwordConfirm)) {
+        } else if (!pointsValue.equals(other.pointsValue)) {
             return false;
         }
         return true;
     }
-    
 }

@@ -8,38 +8,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  * @author parkin9
  *
  */
-
 @Entity
-@Table(name = "accounts")
-public class Account {
+@Table(name="players")
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
+    @Column(name="player_id")
     private Long id;
-    
-    @NotBlank(message = "*Pole obowiązkowe.")
-    @Column(name = "account_name", unique = true)
-    private String name;
-    
-    @NotBlank(message = "*Pole obowiązkowe.")
-    @Size(min = 6, message = "*Minimum 6 znaków.")
-    @Column(name = "password")
-    private String password;
-    
-    @Transient
-    private String passwordConfirm;
 
-///////////////////////////////////////////////////////////////////////////////
+    @NotBlank
+    @Column(name="name")
+    private String name;
+
+    @Column(name="score")
+    private Integer score = 0;
+
+    @ManyToOne
+    private Account account;
+
+/////////////////////////////////////////////////////////////
     
     public Long getId() {
         return id;
@@ -57,36 +53,35 @@ public class Account {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", name=" + name + ", password=" + password + ", passwordConfirm="
-                + passwordConfirm + "]";
+        return "Player [id=" + id + ", name=" + name + ", score=" + score + ", account=" + account + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((account == null) ? 0 : account.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((password == null) ? 0 : password.hashCode());
-        result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
+        result = prime * result + ((score == null) ? 0 : score.hashCode());
         return result;
     }
 
@@ -101,7 +96,14 @@ public class Account {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Account other = (Account) obj;
+        Player other = (Player) obj;
+        if (account == null) {
+            if (other.account != null) {
+                return false;
+            }
+        } else if (!account.equals(other.account)) {
+            return false;
+        }
         if (id == null) {
             if (other.id != null) {
                 return false;
@@ -116,21 +118,13 @@ public class Account {
         } else if (!name.equals(other.name)) {
             return false;
         }
-        if (password == null) {
-            if (other.password != null) {
+        if (score == null) {
+            if (other.score != null) {
                 return false;
             }
-        } else if (!password.equals(other.password)) {
-            return false;
-        }
-        if (passwordConfirm == null) {
-            if (other.passwordConfirm != null) {
-                return false;
-            }
-        } else if (!passwordConfirm.equals(other.passwordConfirm)) {
+        } else if (!score.equals(other.score)) {
             return false;
         }
         return true;
     }
-    
 }

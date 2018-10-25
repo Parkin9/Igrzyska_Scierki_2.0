@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 @Controller
-public class HomeController {
+public class PanelController {
 
-    @GetMapping("/")
-    public String showLoginPage() {
+    @GetMapping("/panel")
+    public String showPanelPage() {
         
-        return "login";
+        return "mainPanel";
     }
 }
