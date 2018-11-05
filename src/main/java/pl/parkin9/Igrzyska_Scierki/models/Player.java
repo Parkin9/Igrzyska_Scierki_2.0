@@ -25,15 +25,15 @@ public class Player {
     @Column(name="player_id")
     private Long id;
 
-    @NotBlank
-    @Column(name="name")
+    @NotBlank(message="*Gracz musi posiadać nazwę")
+    @Column(name="player_name")
     private String name;
 
     @Column(name="score")
     private Integer score = 0;
 
     @ManyToOne
-    private Account account;
+    private UsersAccount account;
 
 /////////////////////////////////////////////////////////////
     
@@ -61,11 +61,11 @@ public class Player {
         this.score = score;
     }
 
-    public Account getAccount() {
+    public UsersAccount getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(UsersAccount account) {
         this.account = account;
     }
 

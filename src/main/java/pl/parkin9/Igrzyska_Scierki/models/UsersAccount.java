@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class UsersAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Account {
     private Long id;
     
     @NotBlank(message = "*Pole obowiązkowe.")
-    @Column(name = "account_name", unique = true)
+    @Column(name = "name", unique = true)
     private String name;
     
     @NotBlank(message = "*Pole obowiązkowe.")
@@ -49,11 +49,11 @@ public class Account {
         this.id = id;
     }
 
-    public String getName() {
+    public String getUsername() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setUsername(String name) {
         this.name = name;
     }
 
@@ -101,7 +101,7 @@ public class Account {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Account other = (Account) obj;
+        UsersAccount other = (UsersAccount) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

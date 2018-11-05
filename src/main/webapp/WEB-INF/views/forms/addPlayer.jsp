@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="https://fonts.googleapis.com/css?family=Modern+Antiqua&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value="css/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='css/style.css'/>">
 	<title>Igrzyska Ścierki - Zarządzanie Graczami</title>
 </head>
 <body>
@@ -16,9 +16,9 @@
         <h1>Zarządzanie Graczami</h1>
     </div>
     <div id="menu">
-        <a href="<c:url value="/panel"/>"><button>Wróć do Panelu Głównego</button></a>
+        <a href="<c:url value='/panel'/>"><button>Wróć do Panelu Głównego</button></a>
     </div>
-        <form:form modelAttribute="player">
+        <form:form method="POST" action="/addPlayer" modelAttribute="player">
         <table>
             <tr>
                 <td>
@@ -33,6 +33,7 @@
             </tr>
         </table>
             <button type="submit">Dodaj</button>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form:form>
     <hr>
     <div id="currentScore">
@@ -41,10 +42,10 @@
                 <th>Gracz</th>
                 <th></th>
             </tr>
-            <c:forEach items="${playerList}" var="player">
+            <c:forEach items="${playersList}" var="player">
                 <tr>
                     <td><c:out value="${player.name}"/></td>
-                    <td><a href="<c:url value="/deletePlayer/${player.id}"/>"><button>Usuń</button></a></td>
+                    <td><a href="<c:url value='/deletePlayer/${player.id}'/>"><button>Usuń</button></a></td>
                 </tr>
             </c:forEach>
         </table>

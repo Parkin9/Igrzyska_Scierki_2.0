@@ -22,7 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
  */
 @Entity
 @Table(name = "games")
-public class TheGame {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class TheGame {
     private Boolean active = true;
 
     @ManyToOne
-    private Account account;
+    private UsersAccount account;
 
 //////////////////////////////////////////////////////////////
     
@@ -77,11 +77,11 @@ public class TheGame {
         this.active = active;
     }
 
-    public Account getAccount() {
+    public UsersAccount getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(UsersAccount account) {
         this.account = account;
     }
 
@@ -114,7 +114,7 @@ public class TheGame {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        TheGame other = (TheGame) obj;
+        Game other = (Game) obj;
         if (account == null) {
             if (other.account != null) {
                 return false;

@@ -28,7 +28,7 @@ public class Task {
     private Long id;
 
     @NotBlank       //TODO add valid's message
-    @Column(name = "name")
+    @Column(name = "task_name")
     private String name;
 
     @NotNull        //TODO add valid's message
@@ -37,7 +37,7 @@ public class Task {
     private Integer pointsValue;
 
     @ManyToOne
-    private Account account;
+    private UsersAccount account;
 
 ////////////////////////////////////////////////////////////
     
@@ -65,11 +65,11 @@ public class Task {
         this.pointsValue = pointsValue;
     }
 
-    public Account getAccount() {
+    public UsersAccount getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(UsersAccount account) {
         this.account = account;
     }
 
