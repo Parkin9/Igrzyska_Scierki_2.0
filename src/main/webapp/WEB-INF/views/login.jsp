@@ -16,20 +16,21 @@
         <h1>Igrzyska Ścierki</h1>
     </div>
     <div style="text-align: center">
-        <%-- <form:form method="POST" action="/" modelAttribute="login">
+    	<c:url value="/login" var="loginProcessingUrl"/>
+        <form method="POST" action="${loginProcessingUrl}">
         <div>
-            <label for="loginName">Login: </label>
-            <form:input path="loginName"/>
-            <form:errors path="loginName"/>
+            <label for="username">Login: </label>
+            <input type="text" id="username" name="username"/>
+            <form:errors path="username"/>
             <br/>
             <label for="password">Hasło: </label>
-            <form:password path="password"/>
+            <input type="password" id="password" name="password"/>
             <form:errors path="password"/>
         </div>
         <span class="logButton">
             <button type="submit">Zaloguj</button>
         </span>
-        </form:form> --%>
+        </form>
         <span class="logButton">
             <a href="<c:url value='/registration'/>"><button>Zarejestruj się</button></a>
         </span>

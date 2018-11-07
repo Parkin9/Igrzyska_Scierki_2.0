@@ -15,5 +15,5 @@ import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
 @Repository
 public interface UsersAccountRepository extends JpaRepository<UsersAccount, Long> {
 
-    UsersAccount findByName(String name);
+    UsersAccount findByUsername(String username);
 }

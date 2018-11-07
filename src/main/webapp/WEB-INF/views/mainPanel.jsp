@@ -13,7 +13,7 @@
 <body>
 <div id="container">
     <div id="gameName">
-        <h1>TODO: User.username</h1>
+        <h1>${name}</h1>
     </div>
     <div id="menu">
         <a href="<c:url value="/game"/>"><button><b>Rozgrywka</b></button></a>

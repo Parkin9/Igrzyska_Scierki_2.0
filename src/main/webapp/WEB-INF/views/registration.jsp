@@ -25,11 +25,11 @@
             <table>
                 <tr>
                     <td>
-                        <label for="name">Nazwa konta: </label>
+                        <label for="username">Nazwa konta: </label>
                     </td>
                     <td>
-                        <form:input path="name"/>
-                        <form:errors path="name"/>
+                        <form:input path="username"/>
+                        <form:errors path="username"/>
                     </td>
                 </tr>
                 <tr>

@@ -29,8 +29,8 @@ public class UsersAccount {
     private Long id;
     
     @NotBlank(message = "*Pole obowiązkowe.")
-    @Column(name = "name", unique = true)
-    private String name;
+    @Column(name = "username", unique = true)
+    private String username;
     
     @NotBlank(message = "*Pole obowiązkowe.")
     @Size(min = 6, message = "*Minimum 6 znaków.")
@@ -54,12 +54,12 @@ public class UsersAccount {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -85,10 +85,10 @@ public class UsersAccount {
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
-
+    
     @Override
     public String toString() {
-        return "UsersAccount [id=" + id + ", name=" + name + ", password=" + password + ", enable=" + enable
+        return "UsersAccount [id=" + id + ", username=" + username + ", password=" + password + ", enable=" + enable
                 + ", passwordConfirm=" + passwordConfirm + "]";
     }
 
@@ -98,9 +98,9 @@ public class UsersAccount {
         int result = 1;
         result = prime * result + ((enable == null) ? 0 : enable.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
         return result;
     }
 
@@ -130,13 +130,6 @@ public class UsersAccount {
         } else if (!id.equals(other.id)) {
             return false;
         }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
         if (password == null) {
             if (other.password != null) {
                 return false;
@@ -151,6 +144,13 @@ public class UsersAccount {
         } else if (!passwordConfirm.equals(other.passwordConfirm)) {
             return false;
         }
+        if (username == null) {
+            if (other.username != null) {
+                return false;
+            }
+        } else if (!username.equals(other.username)) {
+            return false;
+        }
         return true;
-    }    
+    }
 }

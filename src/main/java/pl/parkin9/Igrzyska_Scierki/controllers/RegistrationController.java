@@ -52,13 +52,12 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             return modelAndView;
             
-        } else if(usersAccountService.findUsersAccountByName(usersAccount.getName()) == null){
+        } else if(usersAccountService.findUsersAccountByUsername(usersAccount.getUsername()) == null){
             
             usersAccountService.encodePassword(usersAccount);
             usersAccountService.saveUsersAccount(usersAccount);
             
-            // TODO modelAndView.addObject( ADDING OBJECT FOR LOGGING FORM )
-            modelAndView.setViewName("redirect:/");
+            modelAndView.setViewName("redirect:/login");
             return modelAndView;
             
         } else {
