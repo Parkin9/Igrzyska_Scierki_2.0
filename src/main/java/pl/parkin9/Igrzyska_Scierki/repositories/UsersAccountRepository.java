@@ -13,7 +13,7 @@ import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
  *
  */
 @Repository
-public interface UserRepository extends JpaRepository<UsersAccount, Long> {
+public interface UsersAccountRepository extends JpaRepository<UsersAccount, Long> {
 
-    UsersAccount findByUsername(String username);
+    UsersAccount findByName(String name);
 }

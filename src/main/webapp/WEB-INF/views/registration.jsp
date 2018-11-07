@@ -25,11 +25,11 @@
             <table>
                 <tr>
                     <td>
-                        <label for="username">Nazwa konta: </label>
+                        <label for="name">Nazwa konta: </label>
                     </td>
                     <td>
-                        <form:input path="username"/>
-                        <form:errors path="username"/>
+                        <form:input path="name"/>
+                        <form:errors path="name"/>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
         </span>
         </form:form>
         <div class="errorDiv">
-            ${message}
+            ${errorMessage}
         </div>
     </div>
 </div>
