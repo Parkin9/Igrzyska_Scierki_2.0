@@ -35,8 +35,8 @@ public class UsersAccountServiceImpl implements UsersAccountService {
     }
     
     @Override
-    public UsersAccount findUsersAccountByUsername(String username) {
-        return usersAccountRepository.findByUsername(username);
+    public UsersAccount findUsersAccountByAccountName(String accountName) {
+        return usersAccountRepository.findByAccountName(accountName);
     }
     
     @Override

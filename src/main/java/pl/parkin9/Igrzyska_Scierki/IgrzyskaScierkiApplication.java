@@ -14,6 +14,7 @@ public class IgrzyskaScierkiApplication {
 	
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+	    
+	    return new BCryptPasswordEncoder();
 	}
 }

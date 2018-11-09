@@ -29,8 +29,8 @@ public class UsersAccount {
     private Long id;
     
     @NotBlank(message = "*Pole obowiązkowe.")
-    @Column(name = "username", unique = true)
-    private String username;
+    @Column(name = "account_name", unique = true)
+    private String accountName;
     
     @NotBlank(message = "*Pole obowiązkowe.")
     @Size(min = 6, message = "*Minimum 6 znaków.")
@@ -39,7 +39,7 @@ public class UsersAccount {
     
     @NotNull
     @Column(name = "enable")
-    private Boolean enable = false;
+    private Boolean enable = true;
     
     @Transient
     private String passwordConfirm;
@@ -54,12 +54,12 @@ public class UsersAccount {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getPassword() {
@@ -88,7 +88,7 @@ public class UsersAccount {
     
     @Override
     public String toString() {
-        return "UsersAccount [id=" + id + ", username=" + username + ", password=" + password + ", enable=" + enable
+        return "UsersAccount [id=" + id + ", accountName=" + accountName + ", password=" + password + ", enable=" + enable
                 + ", passwordConfirm=" + passwordConfirm + "]";
     }
 
@@ -100,7 +100,7 @@ public class UsersAccount {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
-        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        result = prime * result + ((accountName == null) ? 0 : accountName.hashCode());
         return result;
     }
 
@@ -144,11 +144,11 @@ public class UsersAccount {
         } else if (!passwordConfirm.equals(other.passwordConfirm)) {
             return false;
         }
-        if (username == null) {
-            if (other.username != null) {
+        if (accountName== null) {
+            if (other.accountName != null) {
                 return false;
             }
-        } else if (!username.equals(other.username)) {
+        } else if (!accountName.equals(other.accountName)) {
             return false;
         }
         return true;

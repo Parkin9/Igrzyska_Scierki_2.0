@@ -52,7 +52,7 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             return modelAndView;
             
-        } else if(usersAccountService.findUsersAccountByUsername(usersAccount.getUsername()) == null){
+        } else if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null){
             
             usersAccountService.encodePassword(usersAccount);
             usersAccountService.saveUsersAccount(usersAccount);

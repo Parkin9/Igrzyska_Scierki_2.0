@@ -17,7 +17,7 @@
         <h1>Igrzyska Ścierki</h1>
     </div>
     <div id="menu">
-        <a href="<c:url value='/'/>"><button>Logowanie</button></a>
+        <a href="<c:url value='/login'/>"><button>Logowanie</button></a>
     </div>
     <div>
         <form:form method="POST" action="/registration" modelAttribute="usersAccount">
@@ -25,11 +25,11 @@
             <table>
                 <tr>
                     <td>
-                        <label for="username">Nazwa konta: </label>
+                        <label for="accountName">Nazwa konta: </label>
                     </td>
                     <td>
-                        <form:input path="username"/>
-                        <form:errors path="username"/>
+                        <form:input path="accountName"/>
+                        <form:errors path="accountName"/>
                     </td>
                 </tr>
                 <tr>
@@ -43,6 +43,7 @@
                 </tr>
             </table>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <span class="logButton">
             <button type="submit">Zarejestruj</button>
         </span>

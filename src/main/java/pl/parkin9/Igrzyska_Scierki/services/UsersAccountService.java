@@ -13,7 +13,7 @@ public interface UsersAccountService {
     
     void saveUsersAccount(UsersAccount usersAccount);
 
-    UsersAccount findUsersAccountByUsername(String username);
+    UsersAccount findUsersAccountByAccountName(String accountName);
 
     void encodePassword(UsersAccount usersAccount);
 

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,8 +36,8 @@ public class PlayerController {
     public ModelAndView showPlayerForm() {
         
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("forms/addPlayer");
-        modelAndView.addObject("newPlayer", new Player());
+        modelAndView.setViewName("addPlayer");
+        modelAndView.addObject("player", new Player());
         
         return modelAndView;
     }
@@ -47,11 +46,11 @@ public class PlayerController {
     public ModelAndView addNewPlayer(@Valid Player player, BindingResult bindingResult) {
         
         ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/addPlayer");
-//        
-//        if(!bindingResult.hasErrors()) {
-//            playerService.savePlayer(player);
-//        }
+        modelAndView.setViewName("redirect:/addPlayer");
+        
+        if(!bindingResult.hasErrors()) {
+            playerService.savePlayer(player);
+        }
         
         return modelAndView;
     }

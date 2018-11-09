@@ -16,16 +16,14 @@
         <h1>Igrzyska Ścierki</h1>
     </div>
     <div style="text-align: center">
-    	<c:url value="/login" var="loginProcessingUrl"/>
-        <form method="POST" action="${loginProcessingUrl}">
+        <form method="post" action="<c:url value='/login'/>">
         <div>
-            <label for="username">Login: </label>
-            <input type="text" id="username" name="username"/>
-            <form:errors path="username"/>
+            <label for="accountName">Login: </label>
+            <input type="text" name="accountName"/>
             <br/>
             <label for="password">Hasło: </label>
-            <input type="password" id="password" name="password"/>
-            <form:errors path="password"/>
+            <input type="password" name="password"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </div>
         <span class="logButton">
             <button type="submit">Zaloguj</button>
