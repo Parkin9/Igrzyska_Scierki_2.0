@@ -16,5 +16,6 @@ public interface UsersAccountService {
     UsersAccount findUsersAccountByAccountName(String accountName);
 
     void encodePassword(UsersAccount usersAccount);
-
+    
+    Boolean comparePasswordWithPasswordConfirm(UsersAccount usersAccount);
 }

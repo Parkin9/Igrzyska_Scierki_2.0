@@ -20,9 +20,10 @@
         <a href="<c:url value='/login'/>"><button>Logowanie</button></a>
     </div>
     <div>
-        <form:form method="POST" action="/registration" modelAttribute="usersAccount">
+    	<c:url value='/registration' var="registrationUrl"/>
+        <form:form method="POST" action="${registrationUrl}" modelAttribute="usersAccount">
         <div>
-            <table>
+            <table style="margin: 0px auto">
                 <tr>
                     <td>
                         <label for="accountName">Nazwa konta: </label>
@@ -41,16 +42,22 @@
                         <form:errors path="password"/>
                     </td>
                 </tr>
+                <tr>
+                	<td>
+                		<label for="passwordConfirm">Potwierdź hasło:</label>
+                	</td>
+                	<td>
+                		<form:password path="passwordConfirm"/>
+                	</td>
+                </tr>
             </table>
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <span class="logButton">
             <button type="submit">Zarejestruj</button>
+            <span class="errorDiv"><c:out value="${errorMessage}"/></span>
         </span>
         </form:form>
-        <div class="errorDiv">
-            ${errorMessage}
-        </div>
     </div>
 </div>
 </body>

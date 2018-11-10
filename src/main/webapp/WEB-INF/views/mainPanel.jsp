@@ -16,10 +16,10 @@
         <h1>${name}</h1>
     </div>
     <div id="menu">
-        <a href="<c:url value="/game"/>"><button><b>Rozgrywka</b></button></a>
-        <a href="<c:url value="/addTask"/>"><button>Zarządzaj Zadaniami</button></a>
-        <a href="<c:url value="/addPlayer"/>"><button>Zarządzaj Graczami</button></a>
-        <a href="<c:url value="/logout"/>"><button>Wyloguj</button></a>
+        <a href="<c:url value='/game'/>"><button><b>Rozgrywka</b></button></a>
+        <a href="<c:url value='/addTask'/>"><button>Zarządzaj Zadaniami</button></a>
+        <a href="<c:url value='/addPlayer'/>"><button>Zarządzaj Graczami</button></a>
+        <a href="<c:url value='/logout'/>"><button>Wyloguj</button></a>
     </div>
     <div id="currentScore">
         <table>

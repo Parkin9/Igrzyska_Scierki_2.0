@@ -45,4 +45,18 @@ public class UsersAccountServiceImpl implements UsersAccountService {
         String rawPassword = usersAccount.getPassword();
         usersAccount.setPassword(passwordEncoder.encode(rawPassword));
     }
+    
+    @Override
+    public Boolean comparePasswordWithPasswordConfirm(UsersAccount usersAccount) {
+        
+        String password = usersAccount.getPassword();
+        String passwordConfirm = usersAccount.getPasswordConfirm();
+        
+        if(password.equals(passwordConfirm)) {
+            return true;
+            
+        } else {
+            return false;
+        }
+    }
 }

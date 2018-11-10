@@ -52,17 +52,31 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             return modelAndView;
             
-        } else if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null){
+        }
+        
+        // Checking that provided Password matches to PasswordConfirm.
+        if(usersAccountService.comparePasswordWithPasswordConfirm(usersAccount)){
             
-            usersAccountService.encodePassword(usersAccount);
-            usersAccountService.saveUsersAccount(usersAccount);
-            
-            modelAndView.setViewName("redirect:/login");
-            return modelAndView;
+            // Checking that UsersAccount already exists in a database.
+            // If yes, encoding Password and saving UsersAccount in a database.
+            if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null) {
+                
+                usersAccountService.encodePassword(usersAccount);
+                usersAccountService.saveUsersAccount(usersAccount);
+                
+                modelAndView.setViewName("redirect:/login");
+                return modelAndView;
+                
+            } else {
+                
+                modelAndView.addObject("errorMessage", "Konto o podanej nazwie już istnieje.");
+                modelAndView.setViewName("registration");
+                return modelAndView;
+            }
             
         } else {
             
-            modelAndView.addObject("errorMessage", "Konto o podanej nazwie już istnieje.");
+            modelAndView.addObject("errorMessage", "Błąd podczas potwierdzania hasła.");
             modelAndView.setViewName("registration");
             return modelAndView;
         }

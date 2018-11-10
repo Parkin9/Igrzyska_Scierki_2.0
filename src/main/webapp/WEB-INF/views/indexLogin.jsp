@@ -16,25 +16,40 @@
         <h1>Igrzyska Ścierki</h1>
     </div>
     <div style="text-align: center">
-        <form method="post" action="<c:url value='/login'/>">
-        <div>
-            <label for="accountName">Login: </label>
-            <input type="text" name="accountName"/>
-            <br/>
-            <label for="password">Hasło: </label>
-            <input type="password" name="password"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </div>
-        <span class="logButton">
-            <button type="submit">Zaloguj</button>
-        </span>
+    	<a href="<c:url value='/registration'/>"><button>Zarejestruj się</button></a>
+    	<c:url value='/login' var="loginUrl"/>
+        <form method="POST" action="${loginUrl}">
+	       	<table style="margin: 0px auto">
+	       		<tr>
+	       			<td>
+	           			<label for="accountName">Login: </label>
+	           		</td>
+	           		<td>
+	           			<input type="text" name="accountName"/>
+	           		</td>
+	           	</tr>
+	           	<tr>
+	           		<td>
+	           			<label for="password">Hasło: </label>
+	           		</td>
+	           		<td>
+	           			<input type="password" name="password"/>
+	           		</td>
+	           	</tr>
+	        	<tr class="logButton">
+	        		<td style="margin: auto">
+	            		<button type="submit">Zaloguj</button>
+	            	</td>
+	            </tr>
+	        </table>
+	    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <span class="logButton">
-            <a href="<c:url value='/registration'/>"><button>Zarejestruj się</button></a>
-        </span>
-        <div class="errorDiv">
-            ${validErrorPass}
-        </div>
+        <c:if test="${param.error != null}">
+        	<div class="errorDiv">Niepoprawny Login i/lub Hasło.</div>
+        </c:if>
+        <c:if test="${param.logout != null}">
+        	<div>Poprawne wylogowanie. Do zobaczenia!</div>
+        </c:if>
     </div>
 </div>
 </body>

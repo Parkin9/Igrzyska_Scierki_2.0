@@ -1,4 +1,4 @@
-    /**
+/**
  * 
  */
 package pl.parkin9.Igrzyska_Scierki.models;
