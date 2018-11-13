@@ -46,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/panel", true)
                 .and()
             .logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
+                .logoutUrl("/bye")
+                .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
     }
     

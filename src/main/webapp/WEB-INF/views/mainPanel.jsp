@@ -16,10 +16,26 @@
         <h1>${name}</h1>
     </div>
     <div id="menu">
-        <a href="<c:url value='/game'/>"><button><b>Rozgrywka</b></button></a>
-        <a href="<c:url value='/addTask'/>"><button>Zarządzaj Zadaniami</button></a>
-        <a href="<c:url value='/addPlayer'/>"><button>Zarządzaj Graczami</button></a>
-        <a href="<c:url value='/logout'/>"><button>Wyloguj</button></a>
+    	<table>
+    		<tr>
+    			<td>
+		        	<a href="<c:url value='/game'/>"><button><b>Rozgrywka</b></button></a>
+		        </td>
+		        <td>
+		        	<a href="<c:url value='/addTask'/>"><button>Zarządzaj Zadaniami</button></a>
+		        </td>
+		        <td>
+		        	<a href="<c:url value='/addPlayer'/>"><button>Zarządzaj Graczami</button></a>
+		        </td>
+		        <td>
+		        	<c:url value="/bye" var="logoutUrl"/>
+		        	<form method="POST" action="${logoutUrl}">
+		        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		        		<button type="submit">Wyloguj</button>
+		        	</form>
+		        </td>
+	        </tr>
+        </table>
     </div>
     <div id="currentScore">
         <table>
