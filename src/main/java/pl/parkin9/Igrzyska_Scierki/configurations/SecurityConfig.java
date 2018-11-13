@@ -35,18 +35,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         
         http.authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/", "/welcome").permitAll()
                 .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginPage("/welcome")
+                .loginProcessingUrl("/welcome")
+                .failureUrl("/welcome?error")
                 .usernameParameter("accountName")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/panel", true)
                 .and()
             .logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/welcome?logout")
                 .logoutUrl("/bye")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");

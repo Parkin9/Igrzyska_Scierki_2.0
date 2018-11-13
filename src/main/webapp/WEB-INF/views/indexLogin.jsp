@@ -2,8 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pl_PL">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="https://fonts.googleapis.com/css?family=Modern+Antiqua&amp;subset=latin-ext" rel="stylesheet">
@@ -17,7 +17,7 @@
     </div>
     <div style="text-align: center">
     	<a href="<c:url value='/registration'/>"><button>Zarejestruj się</button></a>
-    	<c:url value='/login' var="loginUrl"/>
+    	<c:url value='/welcome' var="loginUrl"/>
         <form method="POST" action="${loginUrl}">
 	       	<table style="margin: 0px auto">
 	       		<tr>

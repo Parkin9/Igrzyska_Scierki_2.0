@@ -2,12 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pl_PL">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="https://fonts.googleapis.com/css?family=Modern+Antiqua&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value='css/style.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='css/style.css'/>">
 	<title>Igrzyska Ścierki - Zarządzanie Graczami</title>
 </head>
 <body>
@@ -18,21 +18,23 @@
     <div id="menu">
         <a href="<c:url value='/panel'/>"><button>Wróć do Panelu Głównego</button></a>
     </div>
-        <form:form method="POST" action="/addPlayer" modelAttribute="player">
+    	<c:url value="/addPlayer" var="addPlayerUrl"/>
+        <form:form method="POST" action="${addPlayerUrl}" modelAttribute="player">
         <table>
             <tr>
                 <td>
-                    <label for="name">Nazwa Gracza: </label>
+                    <label for="playerName">Nazwa Gracza: </label>
                 </td>
                 <td>
-                    <form:input path="name" id="name"/>
+                    <form:input path="playerName"/>
                 </td>
                 <td>
-                    <form:errors path="name"/><br>
+                    <form:errors path="playerName"/><br>
                 </td>
             </tr>
         </table>
             <button type="submit">Dodaj</button>
+            <span class="errorDiv"><c:out value="${errorAddPlayer}"/></span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form:form>
     <hr>

@@ -51,14 +51,13 @@ public class RegistrationController {
             
             modelAndView.setViewName("registration");
             return modelAndView;
-            
         }
         
-        // Checking that provided Password matches to PasswordConfirm.
+        // Checking if provided Password matches to PasswordConfirm.
         if(usersAccountService.comparePasswordWithPasswordConfirm(usersAccount)){
             
-            // Checking that UsersAccount already exists in a database.
-            // If yes, encoding Password and saving UsersAccount in a database.
+            // Checking if UsersAccount already exists in a database.
+            // If no (it is NULL), encoding Password and saving UsersAccount in a database.
             if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null) {
                 
                 usersAccountService.encodePassword(usersAccount);
@@ -69,14 +68,14 @@ public class RegistrationController {
                 
             } else {
                 
-                modelAndView.addObject("errorMessage", "Konto o podanej nazwie już istnieje.");
+                modelAndView.addObject("errorRegistration", "Konto o podanej nazwie już istnieje.");
                 modelAndView.setViewName("registration");
                 return modelAndView;
             }
             
         } else {
             
-            modelAndView.addObject("errorMessage", "Błąd podczas potwierdzania hasła.");
+            modelAndView.addObject("errorRegistration", "Błąd podczas potwierdzania hasła.");
             modelAndView.setViewName("registration");
             return modelAndView;
         }

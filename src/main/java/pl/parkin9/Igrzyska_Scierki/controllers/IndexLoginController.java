@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexLoginController {
 
-    @GetMapping(value = {"/", "/login"})
+    @GetMapping(value = {"/", "/welcome"})
     public ModelAndView showIndexPageWithLoginForm() {
         
         ModelAndView modelAndView = new ModelAndView();

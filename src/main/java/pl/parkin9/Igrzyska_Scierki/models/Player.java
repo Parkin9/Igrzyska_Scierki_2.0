@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -22,18 +23,19 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="player_id")
+    @Column(name = "player_id")
     private Long id;
 
-    @NotBlank(message="*Gracz musi posiadać nazwę")
-    @Column(name="player_name")
-    private String name;
+    @NotBlank(message = "*Gracz musi posiadać nazwę")
+    @Column(name = "player_name", unique = true)
+    private String playerName;
 
-    @Column(name="score")
+    @Column(name = "score")
     private Integer score = 0;
 
     @ManyToOne
-    private UsersAccount account;
+    @JoinColumn(name = "users_account_id")
+    private UsersAccount usersAccount;
 
 /////////////////////////////////////////////////////////////
     
@@ -45,12 +47,12 @@ public class Player {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     public Integer getScore() {
@@ -61,26 +63,26 @@ public class Player {
         this.score = score;
     }
 
-    public UsersAccount getAccount() {
-        return account;
+    public UsersAccount getUsersAccount() {
+        return usersAccount;
     }
 
-    public void setAccount(UsersAccount account) {
-        this.account = account;
+    public void setUsersAccount(UsersAccount usersAccount) {
+        this.usersAccount = usersAccount;
     }
 
     @Override
     public String toString() {
-        return "Player [id=" + id + ", name=" + name + ", score=" + score + ", account=" + account + "]";
+        return "Player [id=" + id + ", name=" + playerName + ", score=" + score + ", usersAccount=" + usersAccount + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((account == null) ? 0 : account.hashCode());
+        result = prime * result + ((usersAccount == null) ? 0 : usersAccount.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((playerName == null) ? 0 : playerName.hashCode());
         result = prime * result + ((score == null) ? 0 : score.hashCode());
         return result;
     }
@@ -97,11 +99,11 @@ public class Player {
             return false;
         }
         Player other = (Player) obj;
-        if (account == null) {
-            if (other.account != null) {
+        if (usersAccount == null) {
+            if (other.usersAccount != null) {
                 return false;
             }
-        } else if (!account.equals(other.account)) {
+        } else if (!usersAccount.equals(other.usersAccount)) {
             return false;
         }
         if (id == null) {
@@ -111,11 +113,11 @@ public class Player {
         } else if (!id.equals(other.id)) {
             return false;
         }
-        if (name == null) {
-            if (other.name != null) {
+        if (playerName == null) {
+            if (other.playerName != null) {
                 return false;
             }
-        } else if (!name.equals(other.name)) {
+        } else if (!playerName.equals(other.playerName)) {
             return false;
         }
         if (score == null) {

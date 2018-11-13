@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.parkin9.Igrzyska_Scierki.models.Player;
+import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
 import pl.parkin9.Igrzyska_Scierki.repositories.PlayerRepository;
 
 /**
@@ -29,5 +30,11 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void savePlayer(Player player) {
         playerRepository.save(player);
+    }
+    
+    @Override
+    public Player checkIfPlayerExists(UsersAccount usersAccount, String playerName) {
+        
+        return playerRepository.findPlayerWithLoggedUsersAccount(usersAccount, playerName);
     }
 }
