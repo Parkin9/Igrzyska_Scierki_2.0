@@ -3,6 +3,8 @@
  */
 package pl.parkin9.Igrzyska_Scierki.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +35,8 @@ public class PlayerServiceImpl implements PlayerService {
     }
     
     @Override
-    public Player checkIfPlayerExists(UsersAccount usersAccount, String playerName) {
+    public Set<Player> findAllPlayers(UsersAccount usersAccount) {
         
-        return playerRepository.findPlayerWithLoggedUsersAccount(usersAccount, playerName);
+        return playerRepository.findAllWithLoggedUsersAccount(usersAccount);
     }
 }

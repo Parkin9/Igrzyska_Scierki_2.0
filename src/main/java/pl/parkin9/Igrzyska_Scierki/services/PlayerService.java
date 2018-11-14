@@ -3,6 +3,8 @@
  */
 package pl.parkin9.Igrzyska_Scierki.services;
 
+import java.util.Set;
+
 import pl.parkin9.Igrzyska_Scierki.models.Player;
 import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
 
@@ -14,5 +16,5 @@ public interface PlayerService {
 
     void savePlayer(Player player);
 
-    Player checkIfPlayerExists(UsersAccount usersAccount, String playerName);
+    Set<Player> findAllPlayers(UsersAccount usersAccount);
 }

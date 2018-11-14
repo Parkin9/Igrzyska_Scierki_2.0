@@ -43,8 +43,17 @@ public class UsersAccount {
     
     @Transient
     private String passwordConfirm;
+    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usersAccount", cascade = CascadeType.ALL)
+//    private Set<Player> players;
+//    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usersAccount", cascade = CascadeType.ALL)
+//    private Set<Game> games;
+//    
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usersAccount", cascade = CascadeType.ALL)
+//    private Set<Task> tasks;
 
-///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
     
     public Long getId() {
         return id;
@@ -85,22 +94,22 @@ public class UsersAccount {
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
-    
+
     @Override
     public String toString() {
-        return "UsersAccount [id=" + id + ", accountName=" + accountName + ", password=" + password + ", enable=" + enable
-                + ", passwordConfirm=" + passwordConfirm + "]";
+        return "UsersAccount [id=" + id + ", accountName=" + accountName + ", password=" + password + ", enable="
+                + enable + ", passwordConfirm=" + passwordConfirm + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((accountName == null) ? 0 : accountName.hashCode());
         result = prime * result + ((enable == null) ? 0 : enable.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((passwordConfirm == null) ? 0 : passwordConfirm.hashCode());
-        result = prime * result + ((accountName == null) ? 0 : accountName.hashCode());
         return result;
     }
 
@@ -116,6 +125,13 @@ public class UsersAccount {
             return false;
         }
         UsersAccount other = (UsersAccount) obj;
+        if (accountName == null) {
+            if (other.accountName != null) {
+                return false;
+            }
+        } else if (!accountName.equals(other.accountName)) {
+            return false;
+        }
         if (enable == null) {
             if (other.enable != null) {
                 return false;
@@ -142,13 +158,6 @@ public class UsersAccount {
                 return false;
             }
         } else if (!passwordConfirm.equals(other.passwordConfirm)) {
-            return false;
-        }
-        if (accountName== null) {
-            if (other.accountName != null) {
-                return false;
-            }
-        } else if (!accountName.equals(other.accountName)) {
             return false;
         }
         return true;
