@@ -23,7 +23,7 @@ import javax.validation.constraints.NotBlank;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "player_id")
     private Long id;
 
@@ -76,6 +76,58 @@ public class Player {
     public String toString() {
         return "Player [id=" + id + ", name=" + playerName + ", score=" + score + ", usersAccount=" + usersAccount + "]";
     }
-    
-    // TODO Override hashCode() and equals
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((playerName == null) ? 0 : playerName.hashCode());
+        result = prime * result + ((score == null) ? 0 : score.hashCode());
+        result = prime * result + ((usersAccount == null) ? 0 : usersAccount.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Player other = (Player) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (playerName == null) {
+            if (other.playerName != null) {
+                return false;
+            }
+        } else if (!playerName.equals(other.playerName)) {
+            return false;
+        }
+        if (score == null) {
+            if (other.score != null) {
+                return false;
+            }
+        } else if (!score.equals(other.score)) {
+            return false;
+        }
+        if (usersAccount == null) {
+            if (other.usersAccount != null) {
+                return false;
+            }
+        } else if (!usersAccount.equals(other.usersAccount)) {
+            return false;
+        }
+        return true;
+    }
 }

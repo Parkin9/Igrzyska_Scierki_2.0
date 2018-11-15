@@ -3,7 +3,7 @@
  */
 package pl.parkin9.Igrzyska_Scierki.controllers;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,8 +45,8 @@ public class PlayerController {
         modelAndView.addObject("player", new Player());
         
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
-        Set<Player> playersSet = playerService.findAllPlayers(usersAccount);
-        modelAndView.addObject("playersSet", playersSet);
+        List<Player> players = playerService.getAllPlayers(usersAccount);
+        modelAndView.addObject("players", players);
         
         return modelAndView;
     }
@@ -57,14 +58,35 @@ public class PlayerController {
         
         if(bindingResult.hasErrors()) {
             modelAndView.setViewName("addPlayer");
-            
-        } else {
-            UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
-            player.setUsersAccount(usersAccount);
-            playerService.savePlayer(player);
-            
-            modelAndView.setViewName("redirect:/addPlayer");
+            return modelAndView;
         }
+        
+        UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
+        
+        // Checking if the provided Player, "under" the logged in UsersAccount, already exists in a database.
+        List<Player> players = playerService.getAllPlayers(usersAccount);
+        if(playerService.checkingIfPlayerAlreadyExists(players, player)) {
+            
+            modelAndView.addObject("errorAddPlayer", "Gracz o podanej nazwie już istnieje.");
+            modelAndView.setViewName("addPlayer");
+            return modelAndView;
+        }
+        // The end a checking the existence.
+        
+        player.setUsersAccount(usersAccount);
+        playerService.savePlayer(player);
+        
+        modelAndView.setViewName("redirect:/addPlayer");
+                
+        return modelAndView;
+    }
+    
+    @GetMapping("/deletePlayer/{id}")
+    public ModelAndView deletePlayer(@PathVariable Long id) {
+        
+        ModelAndView modelAndView = new ModelAndView("redirect:/addPlayer");
+        
+        playerService.deletePlayer(playerService.getOneById(id));
         
         return modelAndView;
     }

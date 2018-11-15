@@ -44,7 +44,7 @@
                 <th>Gracz</th>
                 <th></th>
             </tr>
-            <c:forEach items="${playersSet}" var="player">
+            <c:forEach items="${players}" var="player">
                 <tr>
                     <td><c:out value="${player.playerName}"/></td>
                     <td><a href="<c:url value='/deletePlayer/${player.id}'/>"><button>Usuń</button></a></td>

@@ -48,7 +48,6 @@ public class RegistrationController {
         ModelAndView modelAndView = new ModelAndView();
         
         if(bindingResult.hasErrors()) {
-            
             modelAndView.setViewName("registration");
             return modelAndView;
         }
@@ -72,6 +71,7 @@ public class RegistrationController {
                 modelAndView.setViewName("registration");
                 return modelAndView;
             }
+            // The end a checking the existence.
             
         } else {
             
@@ -79,5 +79,6 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             return modelAndView;
         }
+        // The end a checking the comparison.
     }
 }

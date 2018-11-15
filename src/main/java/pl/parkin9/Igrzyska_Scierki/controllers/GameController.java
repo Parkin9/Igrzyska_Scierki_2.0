@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-public class TheGameController {
+public class GameController {
 
     @GetMapping("/game")
     public ModelAndView showGamePanel() {
