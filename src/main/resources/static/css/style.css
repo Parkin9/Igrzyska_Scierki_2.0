@@ -26,26 +26,26 @@ body {
 .errorDiv {
     color: darkred;
 }
- #currentScore {
-     padding-top: 10px;
-     padding-bottom: 10px;
- }
+#currentScore {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
- #menu {
-	 text-align: center;
-     border-radius: 11px;
-     padding-bottom: 11px;
-     padding-top: 11px;
-     border-bottom: dimgray 2px solid;
-     border-top: dimgray 2px solid;
-     margin-bottom: 13px;
- }
+#menu {
+	text-align: right;
+    border-radius: 11px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    border-bottom: dimgray 2px solid;
+    border-top: dimgray 2px solid;
+    margin-bottom: 13px;
+}
 
- button {
-     border-radius: 12px;
-     height: 30px;
- }
+button {
+    border-radius: 12px;
+    height: 30px;
+}
 
- button:hover {
-     background-color: white;
- }
+button:hover {
+    background-color: white;
+}

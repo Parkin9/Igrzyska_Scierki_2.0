@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         
         http.authorizeRequests()
-                .antMatchers("/", "/welcome").permitAll()
+                .antMatchers("/welcome").permitAll()
                 .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -66,6 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         
-        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/css/**", "/js/**");
     }
 }

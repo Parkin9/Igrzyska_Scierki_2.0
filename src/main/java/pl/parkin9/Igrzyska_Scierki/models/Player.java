@@ -23,7 +23,7 @@ import javax.validation.constraints.NotBlank;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "player_id")
     private Long id;
 

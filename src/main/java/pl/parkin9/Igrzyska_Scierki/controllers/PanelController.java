@@ -32,7 +32,7 @@ public class PanelController {
     
 /////////////////////////////////////////////////////////////////////////////
     
-    @GetMapping("/panel")
+    @GetMapping(value = {"/", "/panel"})
     public ModelAndView showPanelPage(HttpSession session) {
         
         ModelAndView modelAndView = new ModelAndView();

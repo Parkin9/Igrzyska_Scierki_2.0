@@ -71,7 +71,7 @@ public class PlayerController {
             modelAndView.setViewName("addPlayer");
             return modelAndView;
         }
-        // The end a checking the existence.
+        // The end of a checking the existence.
         
         player.setUsersAccount(usersAccount);
         playerService.savePlayer(player);
@@ -86,7 +86,7 @@ public class PlayerController {
         
         ModelAndView modelAndView = new ModelAndView("redirect:/addPlayer");
         
-        playerService.deletePlayer(playerService.getOneById(id));
+        playerService.deletePlayer(id);
         
         return modelAndView;
     }

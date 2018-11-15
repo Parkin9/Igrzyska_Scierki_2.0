@@ -18,8 +18,8 @@
     <div id="menu">
         <a href="<c:url value='/panel'/>"><button>Wróć do Panelu Głównego</button></a>
     </div>
-    	<c:url value="/addPlayer" var="addPlayerUrl"/>
-        <form:form method="POST" action="${addPlayerUrl}" modelAttribute="player">
+   	<c:url value="/addPlayer" var="addPlayerUrl"/>
+	<form:form method="POST" action="${addPlayerUrl}" modelAttribute="player">
         <table>
             <tr>
                 <td>
@@ -33,22 +33,22 @@
                 </td>
             </tr>
         </table>
-            <button type="submit">Dodaj</button>
-            <span class="errorDiv"><c:out value="${errorAddPlayer}"/></span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form:form>
+        <button type="submit">Dodaj</button>
+        <span class="errorDiv"><c:out value="${errorAddPlayer}"/></span>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form:form>
     <hr>
     <div id="currentScore">
-        <table>
+    	<table>
             <tr>
                 <th>Gracz</th>
                 <th></th>
             </tr>
             <c:forEach items="${players}" var="player">
-                <tr>
-                    <td><c:out value="${player.playerName}"/></td>
-                    <td><a href="<c:url value='/deletePlayer/${player.id}'/>"><button>Usuń</button></a></td>
-                </tr>
+            <tr>
+                <td><c:out value="${player.playerName}"/></td>
+                <td><a href="<c:url value='/deletePlayer/${player.id}'/>"><button>Usuń</button></a></td>
+            </tr>
             </c:forEach>
         </table>
     </div>

@@ -16,7 +16,6 @@ import pl.parkin9.Igrzyska_Scierki.repositories.PlayerRepository;
  * @author parkin9
  *
  */
-
 @Service
 public class PlayerServiceImpl implements PlayerService {
 
@@ -38,15 +37,10 @@ public class PlayerServiceImpl implements PlayerService {
     public List<Player> getAllPlayers(UsersAccount usersAccount) {
         return playerRepository.findAllWithLoggedUsersAccount(usersAccount);
     }
-    
-    @Override
-    public Player getOneById(Long id) {
-        return playerRepository.getOne(id);
-    }
 
     @Override
-    public void deletePlayer(Player player) {
-        playerRepository.delete(player);
+    public void deletePlayer(Long id) {
+        playerRepository.deleteById(id);
     }
     
     @Override
@@ -54,11 +48,11 @@ public class PlayerServiceImpl implements PlayerService {
         
         for(Player player : players) {
             
-            if(checkedPlayer.equals(player)) {
-                return false;
+            if(checkedPlayer.getPlayerName().equals(player.getPlayerName())) {
+                return true;
             }            
         }
         
-        return true;
+        return false;
     }
 }

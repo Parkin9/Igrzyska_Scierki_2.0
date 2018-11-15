@@ -56,7 +56,7 @@ public class RegistrationController {
         if(usersAccountService.comparePasswordWithPasswordConfirm(usersAccount)){
             
             // Checking if UsersAccount already exists in a database.
-            // If no (it is NULL), encoding Password and saving UsersAccount in a database.
+            // If no (it's NULL), encoding Password and saving UsersAccount in a database.
             if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null) {
                 
                 usersAccountService.encodePassword(usersAccount);
@@ -71,7 +71,7 @@ public class RegistrationController {
                 modelAndView.setViewName("registration");
                 return modelAndView;
             }
-            // The end a checking the existence.
+            // The end of a checking the existence.
             
         } else {
             
@@ -79,6 +79,6 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             return modelAndView;
         }
-        // The end a checking the comparison.
+        // The end of a checking the comparison.
     }
 }
