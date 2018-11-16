@@ -28,13 +28,21 @@
                 <td>
                     <form:input path="playerName"/>
                 </td>
-                <td>
-                    <form:errors path="playerName"/><br>
-                </td>
             </tr>
+            <tr>
+	       		<td>
+	       			<button type="submit">Dodaj</button>
+	       		</td>
+	       		<td>
+	       			<div class="errorDiv"><c:out value="${taskExists}"/></div>
+                    <div class="errorDiv">
+                    	<c:forEach items="${errorsMessages}" var="errorMessage">
+                    		<c:out value="${errorMessage}"/><br>
+                    	</c:forEach>
+                    </div>
+	       		</td>
+	       	</tr>
         </table>
-        <button type="submit">Dodaj</button>
-        <span class="errorDiv"><c:out value="${errorAddPlayer}"/></span>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form:form>
     <hr>

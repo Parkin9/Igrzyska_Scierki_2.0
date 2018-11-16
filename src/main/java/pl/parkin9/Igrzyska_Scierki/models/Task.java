@@ -29,12 +29,12 @@ public class Task {
     @Column(name="task_id")
     private Long id;
 
-    @NotBlank(message = "*Pole obowiązkowe.")
+    @NotBlank(message = "*Nazwa jest obowiązkowa.")
     @Column(name = "task_name")
     private String taskName;
 
-    @NotNull(message = "*Pole obowiązkowe.")
-    @Min(value = 1, message = "Zadanie musi być coś warte.")
+    @NotNull(message = "*Wartość punktowa jest obowiązkowa.")
+    @Min(value = 1, message = "*Zadanie musi być warte choć 1 pkt.")
     @Column(name = "points_value")
     private Integer pointsValue;
 
@@ -57,7 +57,7 @@ public class Task {
     }
 
     public void setTaskName(String taskName) {
-        this.taskName = taskName;
+        this.taskName = taskName.trim();
     }
 
     public Integer getPointsValue() {

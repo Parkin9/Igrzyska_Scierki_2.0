@@ -18,8 +18,7 @@ public class IndexLoginController {
     @GetMapping("/welcome")
     public ModelAndView showIndexPageWithLoginForm() {
         
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("indexLogin");
+        ModelAndView modelAndView = new ModelAndView("indexLogin");
         
         return modelAndView;
     }

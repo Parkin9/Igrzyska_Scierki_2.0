@@ -42,10 +42,10 @@
             <tr>
                 <th>Aktualna rozgrywka</th>
             </tr>
-            <c:forEach items="${playerList}" var="player">
+            <c:forEach items="${players}" var="player">
             <tr>
                 <td>
-                <c:out value="${player.name}"/>
+                <c:out value="${player.playerName}"/>
                 <c:out value=" - "/>
                 <c:out value="${player.score}"/>
                 </td>

@@ -27,7 +27,7 @@ public class Player {
     @Column(name = "player_id")
     private Long id;
 
-    @NotBlank(message = "*Gracz musi posiadać nazwę")
+    @NotBlank(message = "*Nazwa jest obowiązkowa.")
     @Column(name = "player_name")
     private String playerName;
 
@@ -53,7 +53,7 @@ public class Player {
     }
 
     public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+        this.playerName = playerName.trim();
     }
 
     public Integer getScore() {

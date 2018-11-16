@@ -36,7 +36,6 @@ public class RegistrationController {
     public ModelAndView showRegistrationPage() {
         
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("registration");
         modelAndView.addObject("usersAccount", new UsersAccount());
         
         return modelAndView;
@@ -70,15 +69,13 @@ public class RegistrationController {
                 modelAndView.addObject("errorRegistration", "Konto o podanej nazwie już istnieje.");
                 modelAndView.setViewName("registration");
                 return modelAndView;
-            }
-            // The end of a checking the existence.
+            }// END
             
         } else {
             
             modelAndView.addObject("errorRegistration", "Błąd podczas potwierdzania hasła.");
             modelAndView.setViewName("registration");
             return modelAndView;
-        }
-        // The end of a checking the comparison.
+        }// END
     }
 }

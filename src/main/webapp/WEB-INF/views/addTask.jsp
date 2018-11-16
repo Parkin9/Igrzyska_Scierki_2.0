@@ -29,9 +29,6 @@
 	           	<td>
 	               	<form:input path="taskName"/>
 	           	</td>
-	           	<td>
-	               	<form:errors path="taskName"/><br>
-	           	</td>
 	       	</tr>
 	       	<tr>
 	           	<td>
@@ -40,13 +37,21 @@
 	           	<td>
 	               	<form:input type="number" path="pointsValue"/>
 	           	</td>
-	           	<td>
-	               	<form:errors path="pointsValue"/><br>
-	           	</td>
+	       	</tr>
+	       	<tr>
+	       		<td>
+	       			<button type="submit">Dodaj</button>
+	       		</td>
+	       		<td>
+	       			<div class="errorDiv"><c:out value="${taskExists}"/></div>
+                    <div class="errorDiv">
+                    	<c:forEach items="${errorsMessages}" var="errorMessage">
+                    		<c:out value="${errorMessage}"/><br>
+                    	</c:forEach>
+                    </div>
+	       		</td>
 	       	</tr>
 	   	</table>
-		<button type="submit">Dodaj</button>
-		<span class="errorDiv"><c:out value="${errorAddTask}"/></span>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form:form>
 	<hr>
