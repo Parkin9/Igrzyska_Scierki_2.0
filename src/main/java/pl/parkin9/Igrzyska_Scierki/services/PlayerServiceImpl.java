@@ -35,7 +35,7 @@ public class PlayerServiceImpl implements PlayerService {
     
     @Override
     public List<Player> getAllPlayers(UsersAccount usersAccount) {
-        return playerRepository.findAllWithLoggedUsersAccount(usersAccount);
+        return playerRepository.findAllWithUsersAccount(usersAccount);
     }
 
     @Override

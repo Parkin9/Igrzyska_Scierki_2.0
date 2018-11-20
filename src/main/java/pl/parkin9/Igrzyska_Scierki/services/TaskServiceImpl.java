@@ -35,7 +35,7 @@ public class TaskServiceImpl implements TaskService {
     
     @Override
     public List<Task> getAllTasks(UsersAccount usersAccount) {
-        return taskRepository.findAllWithLoggedUsersAccount(usersAccount);
+        return taskRepository.findAllWithUsersAccount(usersAccount);
     }
     
     @Override

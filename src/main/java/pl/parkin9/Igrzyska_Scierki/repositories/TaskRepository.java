@@ -20,5 +20,5 @@ import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
 public interface TaskRepository extends JpaRepository<Task, Long>{
 
     @Query(value = "select t from Task t where t.usersAccount = ?1")
-    List<Task> findAllWithLoggedUsersAccount(UsersAccount usersAccount);
+    List<Task> findAllWithUsersAccount(UsersAccount usersAccount);
 }
