@@ -44,7 +44,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
     
     @Override
-    public Boolean checkingIfPlayerAlreadyExists(List<Player> players, Player checkedPlayer) {
+    public Boolean checkingIfPlayerNameAlreadyExists(List<Player> players, Player checkedPlayer) {
         
         for(Player player : players) {
             

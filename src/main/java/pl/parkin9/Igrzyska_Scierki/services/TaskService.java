@@ -20,6 +20,6 @@ public interface TaskService {
 
     void deleteTask(Long id);
 
-    Boolean checkingIfTaskAlreadyExists(List<Task> tasks, Task checkedTask);
+    Boolean checkingIfTaskNameAlreadyExists(List<Task> tasks, Task checkedTask);
 
 }

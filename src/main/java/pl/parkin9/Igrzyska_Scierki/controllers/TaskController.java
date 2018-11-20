@@ -94,8 +94,8 @@ public class TaskController {
             return modelAndView;
         }// END
         
-        // Checking if the provided Task, "under" the logged in UsersAccount, already exists in a database.
-        if(taskService.checkingIfTaskAlreadyExists(tasks, task)) {
+        // Checking if the provided Task, with a concrete TaskName, already exists in a database.
+        if(taskService.checkingIfTaskNameAlreadyExists(tasks, task)) {
             modelAndView.setViewName("redirect:/addTask?inputError=taskAlreadyExists");
             
             return modelAndView;

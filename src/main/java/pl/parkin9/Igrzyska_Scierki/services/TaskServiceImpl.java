@@ -44,7 +44,7 @@ public class TaskServiceImpl implements TaskService {
     }
     
     @Override
-    public Boolean checkingIfTaskAlreadyExists(List<Task> tasks, Task checkedTask) {
+    public Boolean checkingIfTaskNameAlreadyExists(List<Task> tasks, Task checkedTask) {
         
         for(Task task : tasks) {
             

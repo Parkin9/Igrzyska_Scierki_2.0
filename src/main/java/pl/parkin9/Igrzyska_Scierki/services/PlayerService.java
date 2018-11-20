@@ -18,7 +18,7 @@ public interface PlayerService {
 
     List<Player> getAllPlayers(UsersAccount usersAccount);
 
-    Boolean checkingIfPlayerAlreadyExists(List<Player> players, Player checkedPlayer);
+    Boolean checkingIfPlayerNameAlreadyExists(List<Player> players, Player checkedPlayer);
 
     void deletePlayer(Long id);
 }

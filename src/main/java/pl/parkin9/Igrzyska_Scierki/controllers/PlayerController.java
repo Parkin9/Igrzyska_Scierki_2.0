@@ -94,8 +94,8 @@ public class PlayerController {
             return modelAndView;
         }// END
         
-        // Checking if the provided Player, "under" the logged in UsersAccount, already exists in a database.
-        if(playerService.checkingIfPlayerAlreadyExists(players, player)) {
+        // Checking if the provided Player, with a concrete PlayerName, already exists in a database.
+        if(playerService.checkingIfPlayerNameAlreadyExists(players, player)) {
             modelAndView.setViewName("redirect:/addPlayer?inputError=playerAlreadyExists");
             
             return modelAndView;
