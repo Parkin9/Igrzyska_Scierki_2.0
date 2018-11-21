@@ -16,9 +16,14 @@ public interface PlayerService {
 
     void savePlayer(Player player);
 
+    Player getOneById(Long id);
+
     List<Player> getAllPlayers(UsersAccount usersAccount);
+
+    void deletePlayer(Long id);
 
     Boolean checkingIfPlayerNameAlreadyExists(List<Player> players, Player checkedPlayer);
 
-    void deletePlayer(Long id);
+    Player comparePlayersScoresAndChooseTheWinner(List<Player> players);
+
 }

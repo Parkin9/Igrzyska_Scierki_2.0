@@ -10,12 +10,13 @@ import pl.parkin9.Igrzyska_Scierki.models.UsersAccount;
  *
  */
 public interface UsersAccountService {
-    
+
     void saveUsersAccount(UsersAccount usersAccount);
 
     UsersAccount findUsersAccountByAccountName(String accountName);
 
     void encodePassword(UsersAccount usersAccount);
-    
+
     Boolean comparePasswordWithPasswordConfirm(UsersAccount usersAccount);
+
 }

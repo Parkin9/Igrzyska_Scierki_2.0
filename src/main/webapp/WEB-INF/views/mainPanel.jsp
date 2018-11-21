@@ -13,7 +13,7 @@
 <body>
 <div id="container">
     <div id="gameName">
-        <h1>${name}</h1>
+        <h1>${usersAccountName}</h1>
     </div>
     <div id="menu">
     	<table>

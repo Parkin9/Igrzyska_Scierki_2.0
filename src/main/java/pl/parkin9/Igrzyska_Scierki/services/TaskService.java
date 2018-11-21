@@ -16,6 +16,8 @@ public interface TaskService {
 
     void saveTask(Task task);
 
+    Task getOneById(Long id);
+
     List<Task> getAllTasks(UsersAccount usersAccount);
 
     void deleteTask(Long id);

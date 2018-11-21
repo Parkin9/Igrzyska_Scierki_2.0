@@ -34,6 +34,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
     
     @Override
+    public Player getOneById(Long id) {
+        return playerRepository.getOne(id);
+    }
+    
+    @Override
     public List<Player> getAllPlayers(UsersAccount usersAccount) {
         return playerRepository.findAllWithUsersAccount(usersAccount);
     }
@@ -54,5 +59,25 @@ public class PlayerServiceImpl implements PlayerService {
         }
         
         return false;
+    }
+    
+    @Override
+    public Player comparePlayersScoresAndChooseTheWinner(List<Player> players) {
+        
+        Integer highestScore = 0;
+        Player winnerPlayer = null;
+        
+        for(Player player : players) {
+
+            if(player.getScore() > highestScore) {
+                highestScore = player.getScore();
+            }
+
+            if(player.getScore().equals(highestScore)) {
+                winnerPlayer = player;
+            }
+        }
+        
+        return winnerPlayer;
     }
 }

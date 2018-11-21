@@ -16,4 +16,6 @@ public interface GameService {
 
     Game getOneByUsersAccountAndActive(UsersAccount usersAccount);
 
+    Integer compareEndGameDateWithToday(Game game);
+
 }

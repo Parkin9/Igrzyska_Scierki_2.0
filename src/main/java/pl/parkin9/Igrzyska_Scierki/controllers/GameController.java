@@ -3,13 +3,17 @@
  */
 package pl.parkin9.Igrzyska_Scierki.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.parkin9.Igrzyska_Scierki.models.Game;
@@ -52,7 +56,7 @@ public class GameController {
         if(gameService.getOneByUsersAccountAndActive(usersAccount) == null) {
 
             modelAndView.addObject("game", new Game());
-            modelAndView.setViewName("addGame");
+            modelAndView.setViewName("createGame");
 
         } else {
             
@@ -61,8 +65,54 @@ public class GameController {
             
             modelAndView.addObject("players", players);
             modelAndView.addObject("tasks", tasks);
-            modelAndView.setViewName("gamePanel");
+            modelAndView.setViewName("updateGame");
         }
+
+        return modelAndView;
+    }
+    
+    @PostMapping("/newGame")
+    public ModelAndView addNewGame(@ModelAttribute Game game, HttpSession session) {
+        
+        ModelAndView modelAndView = new ModelAndView();
+        UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
+        
+        game.setUsersAccount(usersAccount);
+        gameService.saveGame(game);
+        
+        modelAndView.setViewName("redirect:/panel");
+        
+        return modelAndView;
+    }
+    
+    @PostMapping("/updateGame")
+    public ModelAndView updateCurrentGame(HttpServletRequest request, HttpSession session) {
+        
+        ModelAndView modelAndView = new ModelAndView();
+        
+        // Getting Player which did Tasks.
+        Player player = playerService.getOneById(Long.valueOf(request.getParameter("whichPlayerDo")));
+        
+        // Getting Tasks which are done.
+        String[] tasksIDsStr = request.getParameterValues("whichTasksIsDone");
+        
+        Long[] tasksIDs = new Long[tasksIDsStr.length];
+        for(int i = 0; i < tasksIDsStr.length; i++) {
+            tasksIDs[i] = Long.valueOf(tasksIDsStr[i]);
+        }
+        
+        List<Task> tasks = new ArrayList<>();
+        for(Long taskId : tasksIDs) {
+            tasks.add(taskService.getOneById(taskId));
+        }// END
+
+        // Updating Player.Score for Tasks which he did.
+        for(Task task : tasks) {
+            player.setScore((player.getScore()) + (task.getPointsValue()));
+        }// END
+
+        playerService.savePlayer(player);
+        modelAndView.setViewName("redirect:/panel");
 
         return modelAndView;
     }

@@ -60,17 +60,17 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- I implemented the HSQLDB, so I would show and boast about my application on computers where the MySQL isn't installed. -->
-		<!-- <dependency>
+ 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
-		<dependency>
+		</dependency>
+		<!-- I implemented the HSQLDB, so I would show and boast about my application on computers where the MySQL isn't installed. -->
+	<!-- <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
