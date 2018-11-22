@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.parkin9.Igrzyska_Scierki.models.Game;
@@ -48,15 +50,21 @@ public class GameController {
 ///////////////////////////////////////////////////////////////////////////////
     
     @GetMapping("/game")
-    public ModelAndView showGamePanel(HttpSession session) {
+    public ModelAndView showGamePanel(@RequestParam(value="inputError", required=false) String inputErrorParam, 
+                                                                                        HttpSession session) {
         
         ModelAndView modelAndView = new ModelAndView();
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
         
         if(gameService.getOneByUsersAccountAndActive(usersAccount) == null) {
-
+            
             modelAndView.addObject("game", new Game());
             modelAndView.setViewName("createGame");
+            
+            if((inputErrorParam != null) && (inputErrorParam.equals("wrongEndGameDate"))) {
+                modelAndView.addObject("endGameError", "*Data zakończenia gry musi znajdować się w przyszłości.");
+                modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            }
 
         } else {
             
@@ -72,9 +80,19 @@ public class GameController {
     }
     
     @PostMapping("/newGame")
-    public ModelAndView addNewGame(@ModelAttribute Game game, HttpSession session) {
+    public ModelAndView addNewGame(@ModelAttribute Game game, 
+                                                   HttpSession session) {
         
         ModelAndView modelAndView = new ModelAndView();
+        
+        // Checking if the chosen Game.End date is after the current date.
+        Integer endGameValue = gameService.compareEndGameDateWithToday(game); 
+        if((endGameValue == 0) || (endGameValue == 1)) {
+            
+            modelAndView.setViewName("redirect:/game?inputError=wrongEndGameDate");
+            return modelAndView;
+        }// END Validating
+        
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
         
         game.setUsersAccount(usersAccount);
@@ -104,12 +122,12 @@ public class GameController {
         List<Task> tasks = new ArrayList<>();
         for(Long taskId : tasksIDs) {
             tasks.add(taskService.getOneById(taskId));
-        }// END
+        }// END Getting Tasks
 
         // Updating Player.Score for Tasks which he did.
         for(Task task : tasks) {
             player.setScore((player.getScore()) + (task.getPointsValue()));
-        }// END
+        }// END Updating
 
         playerService.savePlayer(player);
         modelAndView.setViewName("redirect:/panel");

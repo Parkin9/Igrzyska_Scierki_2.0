@@ -28,13 +28,17 @@
                 <td>
                     <form:input type="date" path="end"/>
                 </td>
-                <%-- <td>
-                    <form:errors path="end"/><br>
-                </td> --%>
             </tr>
+            <tr>
+	       		<td>
+	       			<button type="submit">START</button>
+	       		</td>
+	       		<td>
+                    <div class="errorDiv"><c:out value="${endGameError}"/><br></div>
+	       		</td>
+	       	</tr>
         </table>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button type="submit">START</button>
     </form:form>
 </div>
 </body>

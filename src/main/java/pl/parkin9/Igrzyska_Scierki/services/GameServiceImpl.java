@@ -43,10 +43,10 @@ public class GameServiceImpl implements GameService {
     public Integer compareEndGameDateWithToday(Game game) {
         
         Integer value = 0;
-        LocalDate endGameDate = LocalDate.parse(game.getEnd().toString());
+        LocalDate endGameDate = game.getEnd();
         LocalDate currentDate = LocalDate.now();
         
-        if(endGameDate.isEqual(currentDate)) {
+        if(currentDate.isEqual(endGameDate)) {
             value = 0;
             
         } else if(currentDate.isAfter(endGameDate)) {

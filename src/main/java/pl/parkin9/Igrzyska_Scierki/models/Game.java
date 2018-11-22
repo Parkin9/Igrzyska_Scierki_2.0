@@ -3,7 +3,7 @@
  */
 package pl.parkin9.Igrzyska_Scierki.models;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
  * @author parkin9
@@ -33,11 +35,12 @@ public class Game {
 
     @CreationTimestamp
     @Column(name = "start", updatable = false)
-    private Date start;
+    private LocalDate start;
 
     @NotNull
+    @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "end")
-    private Date end;
+    private LocalDate end;
 
     @NotNull
     private Boolean active = true;
@@ -56,19 +59,19 @@ public class Game {
         this.id = id;
     }
 
-    public Date getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 
@@ -90,7 +93,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "TheGame [id=" + id + ", start=" + start + ", end=" + end + ", active=" + active + ", usersAccount=" + usersAccount
+        return "Game [id=" + id + ", start=" + start + ", end=" + end + ", active=" + active + ", usersAccount=" + usersAccount
                 + "]";
     }
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,11 +65,13 @@ public class TaskController {
             
             case "taskAlreadyExists":
                 modelAndView.addObject("taskExists", "*Zadanie o podanej nazwie już istnieje.");
+                modelAndView.setStatus(HttpStatus.BAD_REQUEST);
                 break;
                 
             case "validationError":
                 List<String> errorsMessages = Arrays.asList(validErrorsMessages.split(","));
                 modelAndView.addObject("errorsMessages", errorsMessages);
+                modelAndView.setStatus(HttpStatus.BAD_REQUEST);
                 break;
             }
         }

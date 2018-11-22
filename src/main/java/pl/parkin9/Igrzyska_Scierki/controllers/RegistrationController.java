@@ -6,6 +6,7 @@ package pl.parkin9.Igrzyska_Scierki.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,7 @@ public class RegistrationController {
         
         if(bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
             return modelAndView;
         }
         
@@ -66,15 +68,17 @@ public class RegistrationController {
                 
             } else {
                 
-                modelAndView.addObject("errorRegistration", "Konto o podanej nazwie już istnieje.");
+                modelAndView.addObject("errorRegistration", "*Konto o podanej nazwie już istnieje.");
                 modelAndView.setViewName("registration");
+                modelAndView.setStatus(HttpStatus.BAD_REQUEST);
                 return modelAndView;
             }// END
             
         } else {
             
-            modelAndView.addObject("errorRegistration", "Błąd podczas potwierdzania hasła.");
+            modelAndView.addObject("errorRegistration", "*Błąd podczas potwierdzania hasła.");
             modelAndView.setViewName("registration");
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
             return modelAndView;
         }// END
     }

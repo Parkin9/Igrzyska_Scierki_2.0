@@ -34,7 +34,7 @@
 	       			<button type="submit">Dodaj</button>
 	       		</td>
 	       		<td>
-	       			<div class="errorDiv"><c:out value="${taskExists}"/></div>
+	       			<div class="errorDiv"><c:out value="${playerExists}"/></div>
                     <div class="errorDiv">
                     	<c:forEach items="${errorsMessages}" var="errorMessage">
                     		<c:out value="${errorMessage}"/><br>

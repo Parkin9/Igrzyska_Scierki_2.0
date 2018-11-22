@@ -8,7 +8,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="https://fonts.googleapis.com/css?family=Modern+Antiqua&amp;subset=latin-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<c:url value='css/style.css'/>">
-	<script type="text/javascript" src="<c:url value='js/jscript.js'/>"></script>
 	<title>Igrzyska Ścierki - Zarządzanie Zadaniami</title>
 </head>
 <body>
