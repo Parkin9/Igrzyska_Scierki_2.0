@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -95,14 +96,16 @@ public class PlayerController {
             modelAndView.setViewName("redirect:/addPlayer?inputError=validationError");
             
             return modelAndView;
-        }// END
+        }
+        // END
         
         // Checking if the provided Player, with a concrete PlayerName, already exists in a database.
         if(playerService.checkingIfPlayerNameAlreadyExists(players, player)) {
             modelAndView.setViewName("redirect:/addPlayer?inputError=playerAlreadyExists");
             
             return modelAndView;
-        }// END
+        }
+        // END
         
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
         player.setUsersAccount(usersAccount);
@@ -118,7 +121,12 @@ public class PlayerController {
         
         ModelAndView modelAndView = new ModelAndView("redirect:/addPlayer");
         
-        playerService.deletePlayer(id);
+        try {
+            playerService.deletePlayer(id);
+            
+        } catch(EmptyResultDataAccessException e) {
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+        }
         
         return modelAndView;
     }
