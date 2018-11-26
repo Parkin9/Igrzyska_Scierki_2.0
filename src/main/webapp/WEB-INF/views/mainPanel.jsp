@@ -40,14 +40,18 @@
     <div id="currentScore">
         <table>
             <tr>
-                <th>Aktualna rozgrywka</th>
+                <th>Aktualna rozgrywka 
+                	<c:if test="${startGame != null}">
+                		<span>(${startGame} -> ${endGame})</span>
+                	</c:if>
+                </th>
             </tr>
             <c:forEach items="${players}" var="player">
             <tr>
                 <td>
-                <c:out value="${player.playerName}"/>
-                <c:out value=" - "/>
-                <c:out value="${player.score}"/>
+	                <c:out value="${player.playerName}"/>
+	                <c:out value=" - "/>
+	                <c:out value="${player.score}"/>
                 </td>
             </tr>
             </c:forEach>

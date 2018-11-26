@@ -58,36 +58,44 @@ public class PanelController {
             session.setAttribute("loggedUsersAccount", usersAccount);
             
         } else {
-            usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
-            
-        }// END
+            usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");   
+        }
+        // END
         
         Game currentGame = gameService.getOneByUsersAccountAndActive(usersAccount);
         List<Player> players = playerService.getAllPlayers(usersAccount);
         
-        // Checking if current Game came to over. 
-        // If it does, setting current Game.Active to "false" and choosing the winner.
-        if((currentGame != null) && (gameService.compareEndGameDateWithToday(currentGame) == 1)) {
+        if(currentGame != null) {
             
-            currentGame.setActive(false);
-            gameService.saveGame(currentGame);
+            modelAndView.addObject("startGame", currentGame.getStart().toString());
+            modelAndView.addObject("endGame", currentGame.getEnd().toString());
             
-            Player winner = playerService.comparePlayersScoresAndChooseTheWinner(players);
-            modelAndView.addObject("winner", winner.getPlayerName());
-            modelAndView.addObject("winnerScore", winner.getScore());
-            modelAndView.setViewName("winPage");
-            
-            // Game is over, so Scores are setting to zero.
-            for(Player player : players) {
-
-                player.setScore(0);
-                playerService.savePlayer(player);
-            }// END
-            
-        } else {
-            modelAndView.addObject("players", players);
-            modelAndView.setViewName("mainPanel");
+            // Checking if the current Game is over. 
+            // If so, sets current Game.Active to "false" and chooses the winner.
+            if(gameService.compareEndGameDateWithToday(currentGame) == 1) {
+                
+                currentGame.setActive(false);
+                gameService.saveGame(currentGame);
+                
+                // Game is over, so Scores are setting to zero.
+                for(Player player : players) {
+                    
+                    player.setScore(0);
+                    playerService.savePlayer(player);
+                }
+                
+                Player winner = playerService.comparePlayersScoresAndChooseTheWinner(players);
+                modelAndView.addObject("winner", winner.getPlayerName());
+                modelAndView.addObject("winnerScore", winner.getScore());
+                modelAndView.setViewName("winPage");
+                
+                return modelAndView;
+            }
+            // END
         }
+        
+        modelAndView.addObject("players", players);
+        modelAndView.setViewName("mainPanel");
         
         return modelAndView;
     }

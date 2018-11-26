@@ -62,7 +62,7 @@ public class GameController {
             modelAndView.setViewName("createGame");
             
             if((inputErrorParam != null) && (inputErrorParam.equals("wrongEndGameDate"))) {
-                modelAndView.addObject("endGameError", "*Data zakończenia gry musi znajdować się w przyszłości.");
+                modelAndView.addObject("endGameError", "*Gra nie może kończyć się w przeszłości.");
                 modelAndView.setStatus(HttpStatus.BAD_REQUEST);
             }
 
@@ -85,11 +85,10 @@ public class GameController {
         
         ModelAndView modelAndView = new ModelAndView();
         
-        // Checking if the chosen Game.End date is after the current date.
-        Integer endGameValue = gameService.compareEndGameDateWithToday(game); 
-        if((endGameValue == 0) || (endGameValue == 1)) {
-            
+        // Checking if the chosen Game.End date is after the current date. 
+        if(gameService.compareEndGameDateWithToday(game) == 1) {
             modelAndView.setViewName("redirect:/game?inputError=wrongEndGameDate");
+            
             return modelAndView;
         }// END Validating
         

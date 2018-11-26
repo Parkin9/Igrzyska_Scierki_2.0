@@ -88,7 +88,7 @@ public class TaskController {
         ModelAndView modelAndView = new ModelAndView();
         
         // Checking if a Hibernate Validation returns any errors.
-        // If yes, pulling they from BindingResult and redirect to GET/addPlayer.
+        // If yes, pulls they from BindingResult and redirects to GET/addPlayer.
         if(bindingResult.hasErrors()) {
             List<String> errorsMessages = inputValidationService.getAllMessagesFromBindingResultAsList(bindingResult);
             redirectAttributes.addFlashAttribute("validErrorsMessages", errorsMessages);

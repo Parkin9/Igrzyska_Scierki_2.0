@@ -57,7 +57,7 @@ public class RegistrationController {
         if(usersAccountService.comparePasswordWithPasswordConfirm(usersAccount)){
             
             // Checking if UsersAccount already exists in a database.
-            // If no (it's NULL), encoding Password and saving UsersAccount in a database.
+            // If no (it's NULL), encodes Password and saves UsersAccount in a database.
             if(usersAccountService.findUsersAccountByAccountName(usersAccount.getAccountName()) == null) {
                 
                 usersAccountService.encodePassword(usersAccount);
@@ -72,7 +72,8 @@ public class RegistrationController {
                 modelAndView.setViewName("registration");
                 modelAndView.setStatus(HttpStatus.BAD_REQUEST);
                 return modelAndView;
-            }// END
+            }
+            // END
             
         } else {
             
@@ -80,6 +81,7 @@ public class RegistrationController {
             modelAndView.setViewName("registration");
             modelAndView.setStatus(HttpStatus.BAD_REQUEST);
             return modelAndView;
-        }// END
+        }
+        // END
     }
 }

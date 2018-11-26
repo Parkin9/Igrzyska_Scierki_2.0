@@ -34,7 +34,7 @@ public class Game {
     private Long id;
 
     @CreationTimestamp
-    @Column(name = "start", updatable = false)
+    @Column(name = "start")
     private LocalDate start;
 
     @NotNull
