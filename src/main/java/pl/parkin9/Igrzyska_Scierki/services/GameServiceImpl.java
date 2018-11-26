@@ -4,6 +4,7 @@
 package pl.parkin9.Igrzyska_Scierki.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game getOneByUsersAccountAndActive(UsersAccount usersAccount) {
         return gameRepository.findFirstByUsersAccountAndActiveIsTrue(usersAccount);
+    }
+    
+    @Override
+    public List<Game> getAllByUsersAccountAndNotActive(UsersAccount usersAccount) {
+        return gameRepository.findAllByUsersAccountAndActiveIsFalse(usersAccount);
     }
     
     @Override

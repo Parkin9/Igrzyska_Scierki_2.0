@@ -28,6 +28,9 @@
 		        	<a href="<c:url value='/addPlayer'/>"><button>Zarządzaj Graczami</button></a>
 		        </td>
 		        <td>
+		        	<a href="<c:url value='/archive'/>"><button>Archiwum</button></a>
+		        </td>
+		        <td>
 		        	<c:url value="/bye" var="logoutUrl"/>
 		        	<form method="POST" action="${logoutUrl}">
 		        		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

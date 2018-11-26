@@ -90,7 +90,8 @@ public class GameController {
             modelAndView.setViewName("redirect:/game?inputError=wrongEndGameDate");
             
             return modelAndView;
-        }// END Validating
+        }
+        // END Validating
         
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
         
@@ -121,12 +122,14 @@ public class GameController {
         List<Task> tasks = new ArrayList<>();
         for(Long taskId : tasksIDs) {
             tasks.add(taskService.getOneById(taskId));
-        }// END Getting Tasks
+        }
+        // END Getting Tasks
 
         // Updating Player.Score for Tasks which he did.
         for(Task task : tasks) {
             player.setScore((player.getScore()) + (task.getPointsValue()));
-        }// END Updating
+        }
+        // END Updating
 
         playerService.savePlayer(player);
         modelAndView.setViewName("redirect:/panel");

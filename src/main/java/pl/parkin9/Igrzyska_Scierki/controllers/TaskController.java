@@ -96,14 +96,16 @@ public class TaskController {
             modelAndView.setViewName("redirect:/addTask?inputError=validationError");
             
             return modelAndView;
-        }// END
+        }
+        // END
         
         // Checking if the provided Task, with a concrete TaskName, already exists in a database.
         if(taskService.checkingIfTaskNameAlreadyExists(tasks, task)) {
             modelAndView.setViewName("redirect:/addTask?inputError=taskAlreadyExists");
             
             return modelAndView;
-        }// END
+        }
+        // END
         
         UsersAccount usersAccount = (UsersAccount)session.getAttribute("loggedUsersAccount");
         task.setUsersAccount(usersAccount);

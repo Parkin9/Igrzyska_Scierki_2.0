@@ -44,6 +44,9 @@ public class Game {
 
     @NotNull
     private Boolean active = true;
+    
+    @Column(name = "winner")
+    private String winnerName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_account_id")
@@ -82,6 +85,14 @@ public class Game {
     public void setActive(Boolean active) {
         this.active = active;
     }
+    
+    public String getWinner() {
+        return winnerName;
+    }
+    
+    public void setWinner(String winnerName) {
+        this.winnerName = winnerName;
+    }
 
     public UsersAccount getUsersAccount() {
         return usersAccount;
@@ -93,8 +104,8 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game [id=" + id + ", start=" + start + ", end=" + end + ", active=" + active + ", usersAccount=" + usersAccount
-                + "]";
+        return "Game [id=" + id + ", start=" + start + ", end=" + end + ", active=" + active + ", winnerName="
+                + winnerName + ", usersAccount=" + usersAccount + "]";
     }
 
     @Override
@@ -106,6 +117,7 @@ public class Game {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
         result = prime * result + ((usersAccount == null) ? 0 : usersAccount.hashCode());
+        result = prime * result + ((winnerName == null) ? 0 : winnerName.hashCode());
         return result;
     }
 
@@ -154,6 +166,13 @@ public class Game {
                 return false;
             }
         } else if (!usersAccount.equals(other.usersAccount)) {
+            return false;
+        }
+        if (winnerName == null) {
+            if (other.winnerName != null) {
+                return false;
+            }
+        } else if (!winnerName.equals(other.winnerName)) {
             return false;
         }
         return true;

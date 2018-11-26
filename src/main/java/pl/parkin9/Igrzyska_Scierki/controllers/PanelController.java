@@ -71,11 +71,18 @@ public class PanelController {
             modelAndView.addObject("endGame", currentGame.getEnd().toString());
             
             // Checking if the current Game is over. 
-            // If so, sets current Game.Active to "false" and chooses the winner.
+            // If so, sets chooses the winner and current Game.Active to "false".
             if(gameService.compareEndGameDateWithToday(currentGame) == 1) {
                 
+                Player winner = playerService.comparePlayersScoresAndChooseTheWinner(players);
+                
                 currentGame.setActive(false);
+                currentGame.setWinner(winner.getPlayerName());
                 gameService.saveGame(currentGame);
+                
+                modelAndView.addObject("winner", winner.getPlayerName());
+                modelAndView.addObject("winnerScore", winner.getScore());
+                modelAndView.setViewName("winPage");
                 
                 // Game is over, so Scores are setting to zero.
                 for(Player player : players) {
@@ -83,11 +90,6 @@ public class PanelController {
                     player.setScore(0);
                     playerService.savePlayer(player);
                 }
-                
-                Player winner = playerService.comparePlayersScoresAndChooseTheWinner(players);
-                modelAndView.addObject("winner", winner.getPlayerName());
-                modelAndView.addObject("winnerScore", winner.getScore());
-                modelAndView.setViewName("winPage");
                 
                 return modelAndView;
             }
